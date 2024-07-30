@@ -3,16 +3,20 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://compolabs.github.io/spark-tg-web-bot/",
   "scripts": {
     "start": "vite --open",
     "build": "tsc && vite build",
     "lint": "eslint --ext .tsx,.ts . --fix",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "pnpm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@twa-dev/sdk": "7.0.0",
+    "gh-pages": "^6.1.1",
     "mobx": "^6.12.3",
     "mobx-react-lite": "^4.0.7",
     "react": "^18.3.1",
