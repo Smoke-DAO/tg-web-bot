@@ -8,11 +8,33 @@ interface ButtonProps {
   outline?: boolean;
 }
 
+const ButtonWrapper = styled.div<{ disabled?: boolean }>`
+  padding: 1px;
+  background: linear-gradient(220deg, #000 0%, #36A10F 100%);
+  background-size: 200% 200%;
+  border-radius: 9px;
+  width: fit-content;
+  animation: gradient 8s ease infinite;
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+`;
+
 const StyledButton = styled.button<{ size?: string; outline?: boolean }>`
+  width: 100%;
   display: inline-flex;
   height: ${(props) => (props.size === "large" ? "56px" : "32px")};
   max-height: ${(props) => (props.size === "large" ? "56px" : "32px")};
-  padding: ${(props) => (props.size === "large" ? "0 8p" : "0 4px")};
+  padding: ${(props) => (props.size === "large" ? "0 8px" : "0 14px")};
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
@@ -20,6 +42,7 @@ const StyledButton = styled.button<{ size?: string; outline?: boolean }>`
   flex-shrink: 0;
   border-radius: 8px;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  border: none;
 
   ${(props) =>
     props.outline
@@ -32,8 +55,7 @@ const StyledButton = styled.button<{ size?: string; outline?: boolean }>`
     }
   `
       : `
-    background: ${props.disabled ? "#313033" : "linear-gradient(102deg, black 0%, #36A10F 100%)"};
-    border: 1px solid ${props.disabled ? "#605D62" : "#36A10F"};
+    background: ${props.disabled ? "#313033" : "linear-gradient(140deg, #000 0%, #36A10F 100%)"};
   `}
 
   box-shadow: ${(props) => (props.disabled ? "none" : "0px 8px 24px rgba(35, 113, 7, 0.08)")};
@@ -51,10 +73,10 @@ const ButtonText = styled.div<{ disabled?: boolean; size?: string; outline?: boo
     return "white";
   }};
   font-size: ${(props) => (props.size === "large" ? "24px" : "16px")};
-  font-family: Novalion;
-  font-weight: 800;
+  font-weight: 500;
   line-height: 25px;
-  word-wrap: break-word;
+  white-space: nowrap;
+  transform: scaleX(0.75);
 `;
 
 export const Button: React.FC<ButtonProps> = ({
@@ -65,10 +87,12 @@ export const Button: React.FC<ButtonProps> = ({
   outline = false
 }) => {
   return (
-    <StyledButton disabled={disabled} onClick={onClick} size={size} outline={outline}>
-      <ButtonText disabled={disabled} size={size} outline={outline}>
-        {children}
-      </ButtonText>
-    </StyledButton>
+    <ButtonWrapper disabled={disabled}>
+      <StyledButton disabled={disabled} onClick={onClick} size={size} outline={outline}>
+        <ButtonText disabled={disabled} size={size} outline={outline}>
+          {children}
+        </ButtonText>
+      </StyledButton>
+    </ButtonWrapper>
   );
 };
