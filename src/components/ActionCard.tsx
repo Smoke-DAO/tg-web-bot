@@ -6,6 +6,7 @@ const Card = styled.div<{ backgroundImage?: string }>`
   width: 185px;
   border-radius: 8px;
   box-shadow: 0px 4px 45px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -13,7 +14,8 @@ const Card = styled.div<{ backgroundImage?: string }>`
   overflow: hidden;
   margin: auto 0;
   padding: 141px 43px 12px;
-  border: 1px solid rgba(39, 77, 18, 1);
+  border: 1px solid;
+  border-color: rgba(39, 77, 18, 1) !important;
   background-image: ${(props) =>
     props.backgroundImage ? `url(${props.backgroundImage})` : "none"};
   background-size: cover;

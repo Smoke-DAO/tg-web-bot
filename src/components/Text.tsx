@@ -11,6 +11,7 @@ const Headline = styled.h1`
   margin: 0;
   transform: scaleX(0.5);
   transform-origin: left center;
+  white-space: nowrap;
 `;
 
 const Title = styled.h2`

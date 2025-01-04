@@ -9,13 +9,21 @@ const MenuItemWrapper = styled.div<{ isActive?: boolean }>`
   white-space: nowrap;
   justify-content: start;
   margin: auto 0;
+  width: 72px;
 `;
 
-const Icon = styled.img`
-  aspect-ratio: 1;
-  object-fit: contain;
-  object-position: center;
+const IconWrapper = styled.div`
   width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  svg {
+    width: 100%;
+    height: 100%;
+    color: inherit;
+  }
 `;
 
 const Label = styled.div`
@@ -24,7 +32,7 @@ const Label = styled.div`
 `;
 
 interface MenuItemProps {
-    icon: string;
+    icon: React.ReactNode;
     label: string;
     isActive?: boolean;
 }
@@ -32,7 +40,7 @@ interface MenuItemProps {
 export const MenuItem: React.FC<MenuItemProps> = ({ icon, label, isActive }) => {
     return (
         <MenuItemWrapper isActive={isActive}>
-            <Icon loading="lazy" src={icon} alt={label} />
+            <IconWrapper>{icon}</IconWrapper>
             <Label>{label}</Label>
         </MenuItemWrapper>
     );
