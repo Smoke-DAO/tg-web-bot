@@ -1,9 +1,9 @@
 {
-  "name": "spark-tg-web-bot",
+  "name": "smoke-dao-tg-web-bot",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://compolabs.github.io/spark-tg-web-bot/",
+  "homepage": "https://Smoke-DAO.github.io/tg-web-bot/",
   "scripts": {
     "start": "vite --open",
     "build": "tsc && vite build",
