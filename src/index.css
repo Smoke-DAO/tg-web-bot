@@ -9,6 +9,7 @@ html {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: white;
 }
 
 body, html, * {
@@ -17,5 +18,4 @@ body, html, * {
 
 .text {
   display: inline-block;
-  transform: scaleX(0.75);
 }

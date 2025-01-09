@@ -2,29 +2,33 @@ import * as React from "react";
 import { MenuItem } from "./components/MenuItem";
 import { SvgIcon } from "./components/SvgIcon";
 import styled from "@emotion/styled";
-import { WelcomeScreen } from "./screens/WelcomeScreen";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 const menuItems = [
   {
     icon: <SvgIcon src="icons/profile.svg" />,
     label: "Profile",
-    isActive: true
+    href: "/profile"
   },
   {
     icon: <SvgIcon src="icons/games.svg" />,
-    label: "Games"
+    label: "Games",
+    href: "/games"
   },
   {
     icon: <SvgIcon src="icons/home.svg" />,
-    label: "Main"
+    label: "Main",
+    href: "/"
   },
   {
     icon: <SvgIcon src="icons/grace.svg" />,
-    label: "$JOINT"
+    label: "$JOINT",
+    href: "/joint"
   },
   {
     icon: <SvgIcon src="icons/puff.svg" />,
-    label: "Proof of puff"
+    label: "Proof of puff",
+    href: "/puff"
   }
 ];
 
@@ -61,7 +65,6 @@ const Content = styled.div`
   margin-bottom: 128px;
   position: relative;
   z-index: 1;
-  // border: 1px solid red;
 `;
 
 const Navigation = styled.nav`
@@ -82,14 +85,22 @@ const Navigation = styled.nav`
 `;
 
 const App: React.FC = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   return (
     <Root>
       <Content>
-        <WelcomeScreen />
+        <Outlet />
       </Content>
       <Navigation>
         {menuItems.map((item, index) => (
-          <MenuItem key={index} {...item} />
+          <MenuItem
+            key={index}
+            {...item}
+            isActive={location.pathname === item.href}
+            onClick={() => navigate(item.href)}
+          />
         ))}
       </Navigation>
     </Root>

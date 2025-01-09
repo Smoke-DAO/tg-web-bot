@@ -1,7 +1,7 @@
 import * as React from "react";
-import { ActionCard } from "../components/ActionCard";
-import { Section } from "../components/Section";
-import { Headline, Title, Body } from "../components/Text";
+import { ActionCard } from "../../components/ActionCard";
+import { Section } from "../../components/Section";
+import { Headline, Title, Body } from "../../components/Text";
 import { Root, AboutSection } from "./styles";
 
 const farmCards = [

@@ -1,22 +1,25 @@
 import styled from "@emotion/styled";
 
 const Headline = styled.h1`
-  color: #FFF;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 36px;
   font-style: normal;
   font-weight: 500;
   line-height: 38px;
   padding: 0;
   margin: 0;
-  transform: scaleX(0.5);
   transform-origin: left center;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-right: 0;
 `;
 
 const Title = styled.h2`
   color: #FFF;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 400;

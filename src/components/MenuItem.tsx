@@ -10,6 +10,7 @@ const MenuItemWrapper = styled.div<{ isActive?: boolean }>`
   justify-content: start;
   margin: auto 0;
   width: 72px;
+  cursor: pointer;
 `;
 
 const IconWrapper = styled.div`
@@ -35,11 +36,12 @@ interface MenuItemProps {
     icon: React.ReactNode;
     label: string;
     isActive?: boolean;
+    onClick?: () => void;
 }
 
-export const MenuItem: React.FC<MenuItemProps> = ({ icon, label, isActive }) => {
+export const MenuItem: React.FC<MenuItemProps> = ({ icon, label, isActive, onClick }) => {
     return (
-        <MenuItemWrapper isActive={isActive}>
+        <MenuItemWrapper isActive={isActive} onClick={onClick}>
             <IconWrapper>{icon}</IconWrapper>
             <Label>{label}</Label>
         </MenuItemWrapper>
