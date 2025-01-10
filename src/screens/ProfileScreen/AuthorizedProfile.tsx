@@ -16,6 +16,7 @@ import {
 import { Row } from "@components/Row.tsx";
 import { SecondaryButton } from "@components/SecondaryButton.tsx";
 import { Column } from "@components/Column.tsx";
+import { Button } from "@components/Button.tsx";
 
 interface AuthorizedProfileProps {
   username: string;
@@ -89,6 +90,9 @@ export const AuthorizedProfile: React.FC<AuthorizedProfileProps> = ({
           world.{" "}
         </Body>
       </Column>
+      <Button fullwidth={true} size="large">
+        Shops on the Map
+      </Button>
     </Root>
   );
 };

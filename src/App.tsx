@@ -1,8 +1,9 @@
 import * as React from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import styled from "@emotion/styled";
+
 import { MenuItem } from "./components/MenuItem";
 import { SvgIcon } from "./components/SvgIcon";
-import styled from "@emotion/styled";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 const menuItems = [
   {
