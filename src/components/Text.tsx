@@ -4,7 +4,7 @@ const Headline = styled.h1`
   font-family: 'Oswald', sans-serif;
   font-size: 36px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 38px;
   padding: 0;
   margin: 0;
@@ -14,7 +14,6 @@ const Headline = styled.h1`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-right: 0;
 `;
 
 const Title = styled.h2`
@@ -27,7 +26,6 @@ const Title = styled.h2`
   padding: 0;
   margin: 0;
   display: inline-block;
-  transform: scaleX(0.5);
   transform-origin: left center;
 `;
 

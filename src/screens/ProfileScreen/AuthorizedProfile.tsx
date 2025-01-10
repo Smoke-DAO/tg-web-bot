@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Headline, Title } from "../../components/Text";
+import { Body, Headline, Title } from "../../components/Text";
 import {
   Root,
   UserInfo,
@@ -10,12 +10,12 @@ import {
   StatTitle,
   StatValue,
   ActionButtons,
-  ActionButton,
   ReferralsSection,
-  ReferralsTitle,
-  ReferralsValue,
   Header
 } from "./styles";
+import { Row } from "@components/Row.tsx";
+import { SecondaryButton } from "@components/SecondaryButton.tsx";
+import { Column } from "@components/Column.tsx";
 
 interface AuthorizedProfileProps {
   username: string;
@@ -46,7 +46,7 @@ export const AuthorizedProfile: React.FC<AuthorizedProfileProps> = ({
           <UserRole>{role}</UserRole>
         </UserInfo>
         <Username>
-            <Title>{username}</Title>
+          <Title>{username}</Title>
         </Username>
       </Header>
 
@@ -65,15 +65,30 @@ export const AuthorizedProfile: React.FC<AuthorizedProfileProps> = ({
         </StatCard>
       </StatsGrid>
 
-      <ReferralsSection>
-        <ReferralsTitle>Refferals</ReferralsTitle>
-        <ReferralsValue>{referrals}</ReferralsValue>
-      </ReferralsSection>
+      <Row style={{ gap: "8px", alignItems: "center" }}>
+        <ReferralsSection>
+          <StatTitle>Refferals</StatTitle>
+          <StatValue>{referrals}</StatValue>
+        </ReferralsSection>
 
-      <ActionButtons>
-        <ActionButton onClick={onStake}>Stake</ActionButton>
-        <ActionButton variant="primary" onClick={onMint}>Mint</ActionButton>
-      </ActionButtons>
+        <ActionButtons>
+          <SecondaryButton disabled={true} fullwidth={true} size="small" onClick={onStake}>
+            Stake
+          </SecondaryButton>
+          <SecondaryButton fullwidth={true} size="small" variant="primary" onClick={onMint}>
+            Mint
+          </SecondaryButton>
+        </ActionButtons>
+      </Row>
+
+      <Column style={{ gap: "8px" }}>
+        <Title>About Smoke DAO</Title>
+        <Body>
+          Farm $moken in games and for inviting new members to the community through Proof of Puff.
+          Mint $joint for $moken and exchange them for real joints in our partner shops around the
+          world.{" "}
+        </Body>
+      </Column>
     </Root>
   );
-}; 
+};
