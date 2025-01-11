@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 const Headline = styled.h1`
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   font-size: 36px;
   font-style: normal;
   font-weight: 400;
@@ -17,8 +17,8 @@ const Headline = styled.h1`
 `;
 
 const Title = styled.h2`
-  color: #FFF;
-  font-family: 'Oswald', sans-serif;
+  color: #fff;
+  font-family: "Oswald", sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
@@ -30,8 +30,8 @@ const Title = styled.h2`
 `;
 
 const Body = styled.p`
-  color: #FFF;
-  font-family: 'Inter', sans-serif;
+  color: inherit;
+  font-family: "Inter", sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -41,8 +41,8 @@ const Body = styled.p`
 `;
 
 const SupportingText = styled.p`
-  color: #FFF;
-  font-family: 'Inter', sans-serif;
+  color: #fff;
+  font-family: "Inter", sans-serif;
   font-size: 10px;
   font-style: normal;
   font-weight: 400;

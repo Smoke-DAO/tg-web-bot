@@ -1,6 +1,9 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { Headline } from "../../components/Text";
+import { Input } from "@components/Input.tsx";
+import { Button } from "@components/Button.tsx";
+import { Column } from "@components/Column.tsx";
 
 const Root = styled.div`
   display: flex;
@@ -11,8 +14,25 @@ const Root = styled.div`
 export const JointScreen: React.FC = () => {
   return (
     <Root>
-      <Headline>$JOINT</Headline>
-      {/* TODO: Add $JOINT content */}
+      <Headline>Mint $JOINT</Headline>
+      <Column gap="16px">
+        <Input
+          fullWidth={true}
+          handleInput={(str) => {}}
+          name="$MOKEN"
+          topDescription="You burn"
+          value="100"
+        />
+        <Input
+          bottomDescription="1 $JOINT = 1000 $MOKEN"
+          fullWidth={true}
+          handleInput={(str) => {}}
+          name="$JOINT"
+          topDescription="You get"
+          value="100"
+        />
+        <Button fullwidth={true}>Mint</Button>
+      </Column>
     </Root>
   );
-}; 
+};
