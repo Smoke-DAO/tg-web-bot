@@ -82,7 +82,7 @@ export const AuthorizedProfile: React.FC<AuthorizedProfileProps> = ({
         </ActionButtons>
       </Row>
 
-      <Column style={{ gap: "8px" }}>
+      <Column gap="8px">
         <Title>About Smoke DAO</Title>
         <Body>
           Farm $moken in games and for inviting new members to the community through Proof of Puff.
