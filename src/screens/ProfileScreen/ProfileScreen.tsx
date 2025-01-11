@@ -1,6 +1,7 @@
 import * as React from "react";
-import { UnauthorizedProfile } from "./UnauthorizedProfile";
+
 import { AuthorizedProfile } from "./AuthorizedProfile";
+import { UnauthorizedProfile } from "./UnauthorizedProfile";
 
 export const ProfileScreen: React.FC = () => {
   const [isConnected, setIsConnected] = React.useState(false);
@@ -26,16 +27,16 @@ export const ProfileScreen: React.FC = () => {
 
   return (
     <AuthorizedProfile
-      username="Kattishhha"
+      referrals={1407}
       role="Validator lvl.3"
       stats={{
         totalSmoken: 14880,
         totalSjoint: 155,
         totalStaked: 155
       }}
-      referrals={1407}
-      onStake={handleStake}
+      username="Kattishhha"
       onMint={handleMint}
+      onStake={handleStake}
     />
   );
-}; 
+};

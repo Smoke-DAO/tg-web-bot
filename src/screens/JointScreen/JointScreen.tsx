@@ -1,9 +1,12 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { Headline } from "../../components/Text";
-import { Input } from "@components/Input.tsx";
+
 import { Button } from "@components/Button.tsx";
 import { Column } from "@components/Column.tsx";
+import { Input } from "@components/Input.tsx";
+import { Headline } from "@components/Text.tsx";
+import { useState } from "react";
+import { MintedScreen } from "@screens/JointScreen/MintedScreen.tsx";
 
 const Root = styled.div`
   display: flex;
@@ -12,6 +15,10 @@ const Root = styled.div`
 `;
 
 export const JointScreen: React.FC = () => {
+  const [openedMintScreen, setOpenedMintScreen] = useState(false);
+  if (openedMintScreen) {
+    return <MintedScreen value="100" />;
+  }
   return (
     <Root>
       <Headline>Mint $JOINT</Headline>
@@ -31,7 +38,9 @@ export const JointScreen: React.FC = () => {
           topDescription="You get"
           value="100"
         />
-        <Button fullwidth={true}>Mint</Button>
+        <Button fullwidth={true} onClick={() => setOpenedMintScreen(true)}>
+          Mint
+        </Button>
       </Column>
     </Root>
   );
