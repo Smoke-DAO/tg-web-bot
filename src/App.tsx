@@ -1,25 +1,35 @@
 import * as React from "react";
-import { MenuItem } from "./components/MenuItem";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
-import { WelcomeScreen } from "./screens/WelcomeScreen";
+
+import { MenuItem } from "./components/MenuItem";
+import { SvgIcon } from "./components/SvgIcon";
 
 const menuItems = [
   {
-    icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/d25a9630bc1d9ba828884620f9535bdb53cf8f3a29239218a24a56bd3ca71f81?placeholderIfAbsent=true&apiKey=0ad627149f724a528bdb7c55f297c206",
+    icon: <SvgIcon src="icons/profile.svg" />,
     label: "Profile",
-    isActive: true
+    href: "/profile"
   },
   {
-    icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/c437d87bb14770ae1054b1b9be192f446c0417ac054049c5ab5cba08b4e23f9e?placeholderIfAbsent=true&apiKey=0ad627149f724a528bdb7c55f297c206",
-    label: "Games"
+    icon: <SvgIcon src="icons/games.svg" />,
+    label: "Games",
+    href: "/games"
   },
   {
-    icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/4838988ae21f3634e79b817e40ea692ce5419be3752e1e7312ada8bb84bd7e59?placeholderIfAbsent=true&apiKey=0ad627149f724a528bdb7c55f297c206",
-    label: "$JOINT"
+    icon: <SvgIcon src="icons/home.svg" />,
+    label: "Main",
+    href: "/"
   },
   {
-    icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/1d1297f3f8b69427644e3fbc5acef438796bb5e11f9dd99d29965162e506dbc2?placeholderIfAbsent=true&apiKey=0ad627149f724a528bdb7c55f297c206",
-    label: "Proof of puff"
+    icon: <SvgIcon src="icons/grace.svg" />,
+    label: "$JOINT",
+    href: "/joint"
+  },
+  {
+    icon: <SvgIcon src="icons/puff.svg" />,
+    label: "Proof of puff",
+    href: "/puff"
   }
 ];
 
@@ -56,7 +66,6 @@ const Content = styled.div`
   margin-bottom: 128px;
   position: relative;
   z-index: 1;
-  border: 1px solid red;
 `;
 
 const Navigation = styled.nav`
@@ -69,24 +78,30 @@ const Navigation = styled.nav`
   background-color: rgba(0, 0, 0, 1);
   display: flex;
   align-items: center;
-  gap: 40px 49px;
   overflow: hidden;
   justify-content: space-between;
   padding: 24px;
-  max-width: 480px;
   width: calc(100% - 32px);
   z-index: 1;
 `;
 
 const App: React.FC = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   return (
     <Root>
       <Content>
-        <WelcomeScreen />
+        <Outlet />
       </Content>
       <Navigation>
         {menuItems.map((item, index) => (
-          <MenuItem key={index} {...item} />
+          <MenuItem
+            key={index}
+            {...item}
+            isActive={location.pathname === item.href}
+            onClick={() => navigate(item.href)}
+          />
         ))}
       </Navigation>
     </Root>

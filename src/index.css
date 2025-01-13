@@ -1,40 +1,4 @@
-@font-face {
-  font-family: "Novalion";
-  /* src: url("/fonts/Novalion-Regular.ttf") format("truetype"); */
-  src: url("/fonts/Novalion-Regular Demo.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Novalion";
-  /* src: url("/fonts/Novalion-Medium.ttf") format("truetype"); */
-  src: url("/fonts/Novalion-Regular Demo.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Novalion";
-  /* src: url("/fonts/Novalion-Bold.ttf") format("truetype"); */
-  src: url("/fonts/Novalion-Regular Demo.ttf") format("truetype");
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('/fonts/Inter_18pt-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('/fonts/Inter_18pt-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-}
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 
 body,
 html {
@@ -47,4 +11,13 @@ html {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: white;
+}
+
+body, html {
+  font-family: 'Oswald', sans-serif;
+}
+
+.text {
+  display: inline-block;
 }

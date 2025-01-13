@@ -11,13 +11,10 @@ interface ButtonProps {
 }
 
 const ButtonWrapper = styled.div<{ disabled?: boolean; fullwidth?: boolean }>`
-  padding: 1px;
-  background: linear-gradient(220deg, #000 0%, #36a10f 100%);
   background-size: 200% 200%;
   border-radius: 9px;
   animation: gradient 8s ease infinite;
   width: ${(props) => (props.fullwidth ? "100%" : "fit-content")};
-  box-sizing: border-box;
   @keyframes gradient {
     0% {
       background-position: 0% 50%;
@@ -57,7 +54,7 @@ const StyledButton = styled.button<{ size?: string; outline?: boolean }>`
     }
   `
       : `
-    background: ${props.disabled ? "#313033" : "linear-gradient(140deg, #000 0%, #36A10F 100%)"};
+    background: unset};
   `}
 
   box-shadow: ${(props) => (props.disabled ? "none" : "0px 8px 24px rgba(35, 113, 7, 0.08)")};
@@ -75,18 +72,18 @@ const ButtonText = styled.div<{ disabled?: boolean; size?: string; outline?: boo
     return "white";
   }};
   font-size: ${(props) => (props.size === "large" ? "24px" : "16px")};
-  font-weight: 400;
+  font-weight: 500;
   line-height: 25px;
   white-space: nowrap;
-  font-family: "Oswald", sans-serif;
+  transform: scaleX(0.75);
 `;
 
-export const Button: React.FC<ButtonProps> = ({
+export const SecondaryButton: React.FC<ButtonProps> = ({
   children,
   disabled = false,
   onClick,
   size = "large",
-  outline = false,
+  outline = true,
   fullwidth = false
 }) => {
   return (
