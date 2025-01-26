@@ -1,14 +1,47 @@
 import * as React from "react";
+import axios from "axios";
 
 import { AuthorizedProfile } from "./AuthorizedProfile";
 import { UnauthorizedProfile } from "./UnauthorizedProfile";
 
-export const ProfileScreen: React.FC = () => {
-  const [isConnected, setIsConnected] = React.useState(false);
+type UserProfile = {
+  id: number;
+  firstName: string;
+  username?: string;
+  balance: number;
+  level: string;
+  daysWithUs: number;
+  givenProofOfPuffsCount: number;
+  takenProofOfPuffsCount: number;
+};
 
-  const handleConnect = React.useCallback(() => {
-    // TODO: Implement wallet connection
-    setIsConnected(true);
+export const ProfileScreen: React.FC = () => {
+  const [userProfile, setUserProfile] = React.useState<UserProfile | null>(null)
+
+  const handleConnect = React.useCallback(async () => {
+    const { initData } = window.Telegram.WebApp;
+
+    const params = new URLSearchParams(String(initData));
+    const userJsonString = params.get("user");
+
+    if (!userJsonString) {
+      console.error("Telegram: initData params for `user` not found");
+      return;
+    }
+
+    try {
+      const user = JSON.parse(userJsonString);
+      const response = await axios.get(`https://seven-ducks-show.loca.lt/v2/users/${user.id}`, {
+        headers: {
+          "telegram-init-data": initData,
+          // localtunnel bypass for local development
+          "bypass-tunnel-reminder": "true"
+        }
+      });
+      setUserProfile(response.data);
+    } catch (e) {
+      console.error(e);
+    }
   }, []);
 
   const handleStake = React.useCallback(() => {
@@ -21,20 +54,20 @@ export const ProfileScreen: React.FC = () => {
     console.log("Mint clicked");
   }, []);
 
-  if (!isConnected) {
+  if (userProfile === null) {
     return <UnauthorizedProfile onConnect={handleConnect} />;
   }
 
   return (
     <AuthorizedProfile
-      referrals={1407}
-      role="Validator lvl.3"
+      balance={userProfile.balance}
+      role={userProfile.level}
       stats={{
-        totalSmoken: 14880,
-        totalSjoint: 155,
-        totalStaked: 155
+        daysWithUs: userProfile.daysWithUs,
+        givenProofOfPuffsCount: userProfile.givenProofOfPuffsCount,
+        takenProofOfPuffsCount: userProfile.takenProofOfPuffsCount
       }}
-      username="Kattishhha"
+      username={userProfile.username || userProfile.firstName}
       onMint={handleMint}
       onStake={handleStake}
     />

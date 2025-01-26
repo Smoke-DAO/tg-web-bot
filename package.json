@@ -16,6 +16,7 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@twa-dev/sdk": "7.0.0",
+    "axios": "^1.7.9",
     "gh-pages": "^6.1.1",
     "mobx": "^6.12.3",
     "mobx-react-lite": "^4.0.7",
