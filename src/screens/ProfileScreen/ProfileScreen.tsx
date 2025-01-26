@@ -4,6 +4,8 @@ import axios from "axios";
 import { AuthorizedProfile } from "./AuthorizedProfile";
 import { UnauthorizedProfile } from "./UnauthorizedProfile";
 
+const SERVER_URL = "https://api-old.smokedao.fun";
+
 type UserProfile = {
   id: number;
   firstName: string;
@@ -31,7 +33,7 @@ export const ProfileScreen: React.FC = () => {
 
     try {
       const user = JSON.parse(userJsonString);
-      const response = await axios.get(`https://seven-ducks-show.loca.lt/v2/users/${user.id}`, {
+      const response = await axios.get(`${SERVER_URL}/v2/users/${user.id}`, {
         headers: {
           "telegram-init-data": initData,
           // localtunnel bypass for local development
