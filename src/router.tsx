@@ -1,5 +1,5 @@
 import * as React from "react";
-import { createHashRouter } from "react-router-dom";
+import { createHashRouter, Navigate } from "react-router-dom";
 import App from "./App";
 import { ProfileScreen } from "./screens/ProfileScreen/ProfileScreen";
 import { GamesScreen } from "./screens/GamesScreen/GamesScreen";
@@ -9,6 +9,7 @@ import { PuffScreen } from "./screens/PuffScreen/PuffScreen";
 
 export const router = createHashRouter([
   {
+    path: "/",
     element: <App />,
     children: [
       {
@@ -34,6 +35,14 @@ export const router = createHashRouter([
       {
         path: "puff",
         element: <PuffScreen />,
+      },
+      {
+        path: "tgWebAppData=:data",
+        element: <Navigate to="/" replace />,
+      },
+      {
+        path: "*",
+        element: <Navigate to="/" replace />,
       },
     ],
   },

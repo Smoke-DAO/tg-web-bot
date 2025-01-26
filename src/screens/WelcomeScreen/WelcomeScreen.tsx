@@ -7,12 +7,12 @@ import { Root, AboutSection } from "./styles";
 const farmCards = [
   {
     title: "Play Games",
-    backgroundImage: "/images/games.jpg",
+    backgroundImage: "./images/games.jpg",
     href: "/games",
   },
   {
     title: "Proof of Puff",
-    backgroundImage: "/images/proof_of_puff.jpg",
+    backgroundImage: "./images/proof_of_puff.jpg",
     href: "/proof-of-puff",
   }
 ]
@@ -20,12 +20,12 @@ const farmCards = [
 const mintSpendCards = [
   {
     title: "Mint",
-    backgroundImage: "/images/mint.jpg",
+    backgroundImage: "./images/mint.jpg",
     href: "/mint-joint",
   },
   {
     title: "Spend",
-    backgroundImage: "/images/spend.jpg",
+    backgroundImage: "./images/spend.jpg",
     href: "/spend-joint",
   },
 ]

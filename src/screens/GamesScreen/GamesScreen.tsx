@@ -13,13 +13,13 @@ const Root = styled.div`
 
 const games = [
   {
-    imageSrc: "public/images/farm.jpg",
+    imageSrc: "./images/farm.jpg",
     name: "Ganja Farm",
     description: "Buy seeds for $moken, grow and sell Ganja, get $joints",
     gameLink: "/"
   },
   {
-    imageSrc: "public/images/roller.jpg",
+    imageSrc: "./images/roller.jpg",
     name: "OG Roller",
     description: "Spin the Grinder, score the joints and get the $moken.",
     gameLink: "/"

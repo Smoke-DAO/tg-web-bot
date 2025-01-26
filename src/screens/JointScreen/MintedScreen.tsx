@@ -21,7 +21,7 @@ const Wrapper = styled(Column)`
 const Image = styled.div`
   width: 196px;
   height: 211px;
-  background-image: url("public/images/thumb.png");
+  background-image: url("./images/thumb.png");
   background-size: contain;
 `;
 

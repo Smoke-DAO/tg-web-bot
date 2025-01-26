@@ -16,6 +16,7 @@ export default defineConfig({
   base: "./",
   build: {
     outDir: OUT_DIR,
+    assetsDir: "assets",
   },
   define: {
     "process.env.__COMMIT_HASH__": JSON.stringify(COMMIT_HASH),
