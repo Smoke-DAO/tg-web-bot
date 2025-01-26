@@ -13,6 +13,7 @@ const COMMIT_HASH = execSync("git rev-parse --short HEAD").toString().trim();
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "./",
   build: {
     outDir: OUT_DIR,
   },
