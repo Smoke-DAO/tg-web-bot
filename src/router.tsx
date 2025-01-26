@@ -1,5 +1,5 @@
 import * as React from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import App from "./App";
 import { ProfileScreen } from "./screens/ProfileScreen/ProfileScreen";
 import { GamesScreen } from "./screens/GamesScreen/GamesScreen";
@@ -7,35 +7,34 @@ import { WelcomeScreen } from "./screens/WelcomeScreen/WelcomeScreen";
 import { JointScreen } from "./screens/JointScreen/JointScreen";
 import { PuffScreen } from "./screens/PuffScreen/PuffScreen";
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
-    path: "/",
     element: <App />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <WelcomeScreen />,
       },
       {
-        path: "/profile",
+        path: "profile",
         element: <ProfileScreen />,
       },
       {
-        path: "/games",
+        path: "games",
         element: <GamesScreen />,
       },
       {
-        path: "/main",
+        path: "main",
         element: <WelcomeScreen />,
       },
       {
-        path: "/joint",
+        path: "joint",
         element: <JointScreen />,
       },
       {
-        path: "/puff",
+        path: "puff",
         element: <PuffScreen />,
       },
     ],
   },
-]); 
+]);
