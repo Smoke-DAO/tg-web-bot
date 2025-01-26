@@ -1,32 +1,35 @@
 import * as React from "react";
-import { Body, Headline, Title } from "../../components/Text";
-import {
-  Root,
-  UserInfo,
-  Username,
-  UserRole,
-  StatsGrid,
-  StatCard,
-  StatTitle,
-  StatValue,
-  ActionButtons,
-  ReferralsSection,
-  Header
-} from "./styles";
+
+import { Button } from "@components/Button.tsx";
+import { Column } from "@components/Column.tsx";
 import { Row } from "@components/Row.tsx";
 import { SecondaryButton } from "@components/SecondaryButton.tsx";
-import { Column } from "@components/Column.tsx";
-import { Button } from "@components/Button.tsx";
+
+import { Body, Headline, Title } from "../../components/Text";
+
+import {
+  ActionButtons,
+  Header,
+  ReferralsSection,
+  Root,
+  StatCard,
+  StatsGrid,
+  StatTitle,
+  StatValue,
+  UserInfo,
+  Username,
+  UserRole
+} from "./styles";
 
 interface AuthorizedProfileProps {
   username: string;
   role: string;
   stats: {
-    totalSmoken: number;
-    totalSjoint: number;
-    totalStaked: number;
+    daysWithUs: number;
+    givenProofOfPuffsCount: number;
+    takenProofOfPuffsCount: number;
   };
-  referrals: number;
+  balance: number;
   onStake: () => void;
   onMint: () => void;
 }
@@ -35,7 +38,7 @@ export const AuthorizedProfile: React.FC<AuthorizedProfileProps> = ({
   username,
   role,
   stats,
-  referrals,
+  balance,
   onStake,
   onMint
 }) => {
@@ -53,23 +56,23 @@ export const AuthorizedProfile: React.FC<AuthorizedProfileProps> = ({
 
       <StatsGrid>
         <StatCard>
-          <StatTitle>Total $moken</StatTitle>
-          <StatValue>{stats.totalSmoken}</StatValue>
+          <StatTitle>Days with us</StatTitle>
+          <StatValue>{stats.daysWithUs}</StatValue>
         </StatCard>
         <StatCard>
-          <StatTitle>Total $joint</StatTitle>
-          <StatValue>{stats.totalSjoint}</StatValue>
+          <StatTitle>Validated</StatTitle>
+          <StatValue>{stats.givenProofOfPuffsCount}</StatValue>
         </StatCard>
         <StatCard>
-          <StatTitle>Total $joint</StatTitle>
-          <StatValue>{stats.totalStaked}</StatValue>
+          <StatTitle>Got validations</StatTitle>
+          <StatValue>{stats.takenProofOfPuffsCount}</StatValue>
         </StatCard>
       </StatsGrid>
 
       <Row style={{ gap: "8px", alignItems: "center" }}>
         <ReferralsSection>
-          <StatTitle>Refferals</StatTitle>
-          <StatValue>{referrals}</StatValue>
+          <StatTitle>$MOKEN Balance</StatTitle>
+          <StatValue>{balance}</StatValue>
         </ReferralsSection>
 
         <ActionButtons>
