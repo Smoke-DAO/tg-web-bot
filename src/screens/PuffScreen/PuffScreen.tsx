@@ -1,5 +1,7 @@
 import * as React from "react";
+import { useState } from "react";
 import styled from "@emotion/styled";
+import { observer } from "mobx-react-lite";
 
 import { Button } from "@components/Button.tsx";
 import { Column } from "@components/Column.tsx";
@@ -7,8 +9,10 @@ import { Row } from "@components/Row.tsx";
 import { SecondaryButton } from "@components/SecondaryButton.tsx";
 import { Body, Headline } from "@components/Text.tsx";
 import { StatTitle, StatValue } from "@screens/ProfileScreen/styles.ts";
-import { useState } from "react";
 import { SmokeSession } from "@screens/PuffScreen/SmokeSession.tsx";
+import { useStores } from "@stores/useStores";
+
+import { puffsApi } from "../../services/api";
 
 const Root = styled.div`
   display: flex;
@@ -27,9 +31,28 @@ export const ProfileCard = styled.div`
   justify-content: space-between;
 `;
 
-export const PuffScreen: React.FC = () => {
+export const PuffScreen: React.FC = observer(() => {
+  const { userStore } = useStores();
   const [openSmokeSession, setOpenSmokeSession] = useState(false);
-  const smokeId = "9851880";
+  const [sessionData, setSessionData] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const profile = userStore.profile;
+  const smokeId = profile?.id.toString() || "Not available";
+  const tokenBalance = profile?.balance || 0;
+
+  const handleStartSession = async () => {
+    setIsLoading(true);
+    try {
+      const response = await puffsApi.createPuff();
+      setSessionData(response);
+      setOpenSmokeSession(true);
+    } catch (error) {
+      console.error("Failed to start smoke session:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <Root>
@@ -43,11 +66,11 @@ export const PuffScreen: React.FC = () => {
             </ProfileCard>
             <ProfileCard>
               <StatTitle>Total $moken</StatTitle>
-              <StatValue>14 880</StatValue>
+              <StatValue>{tokenBalance}</StatValue>
             </ProfileCard>
           </Row>
-          <Button fullwidth={true} onClick={() => setOpenSmokeSession(true)}>
-            Start Smoke Session
+          <Button disabled={isLoading} fullwidth={true} onClick={handleStartSession}>
+            {isLoading ? "Loading..." : "Start Smoke Session"}
           </Button>
           <Body>
             Start a smokey session every time you smoke with friends. Scan the received QR code and
@@ -58,7 +81,9 @@ export const PuffScreen: React.FC = () => {
           </SecondaryButton>
         </Column>
       )}
-      {openSmokeSession && <SmokeSession smokeId={smokeId} />}
+      {openSmokeSession && sessionData && (
+        <SmokeSession sessionData={sessionData} smokeId={smokeId} />
+      )}
     </Root>
   );
-};
+});

@@ -10,6 +10,13 @@ import { ValidatedScreen } from "@screens/PuffScreen/ValidatedScreen.tsx";
 
 type TProps = {
   smokeId: string;
+  sessionData: {
+    code: string;
+    urls: {
+      telegram: string;
+      uri: string;
+    }
+  };
 };
 
 const WrapperQR = styled(Column)`
@@ -19,7 +26,7 @@ const WrapperQR = styled(Column)`
   width: fit-content;
 `;
 
-export const SmokeSession: FC<TProps> = ({ smokeId }) => {
+export const SmokeSession: FC<TProps> = ({ smokeId, sessionData }) => {
   const [openValidatedScreen, setOpenValidatedScreen] = useState(false);
   return (
     <>
@@ -27,12 +34,12 @@ export const SmokeSession: FC<TProps> = ({ smokeId }) => {
         <Column gap="24px">
           <Headline>Smoke DAO bot</Headline>
           <Column gap="16px">
-            <WrapperQR alignItems="center" size={350}>
-              <QRCode value={smokeId} />
+            <WrapperQR alignItems="center" style={{ width: 350 }}>
+              <QRCode value={sessionData.urls.uri} />
             </WrapperQR>
             <Body>
               Here is your unique &#34;Proof of Puff&#34; link:
-              https://t.me/smoke_dao_bot?start=pop-1c727b7c Send this link to the person you are
+              {sessionData.urls.uri}. Send this link to the person you are
               validating. They need to click on it to receive their &#34;Proof of Puff&#34;.
             </Body>
             <Body>The &#34;Proof of Puff&#34; link is valid for 1 hours.</Body>

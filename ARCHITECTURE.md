@@ -9,8 +9,11 @@ The application follows a layered architecture pattern with MobX for state manag
 Located in `src/services/`
 - **API Service**: Handles all communication with the backend
   - Manages authentication headers
-  - Provides methods for various API endpoints
+  - Provides methods for various API endpoints:
+    - `userApi.fetchProfile()`: Get user profile data
+    - `puffsApi.createPuff()`: Create new smoke session
   - Centralizes error handling for API requests
+  - Uses Telegram WebApp data for authentication
 
 ### 2. Store Layer 
 Located in `src/stores/`
@@ -35,14 +38,24 @@ Located in `src/screens/` and `src/components/`
 2. **API Communication**
    - All API requests go through the services layer
    - Telegram init data is attached to requests for authentication
+   - API endpoints:
+     - GET /v2/users/{id}: Fetch user profile
+     - POST /v2/puffs: Create new smoke session, returns QR code data
 
 3. **State Management**
    - User data is stored in the UserStore
    - Components observe store changes using MobX
+   - Profile data includes:
+     - User ID (used as Smoke ID)
+     - Token balance ($moken)
+     - Other profile stats
 
 4. **UI Updates**
    - Components render based on store state
    - User actions trigger store methods, which may call API services
+   - Example flows:
+     - Profile view: Display user stats from UserStore
+     - Smoke Session: Create puff -> Show QR -> Share link
 
 ## Authentication Flow
 Authentication happens automatically using the Telegram WebApp data:

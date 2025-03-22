@@ -15,6 +15,22 @@ const getTelegramAuthData = () => {
   return initData;
 };
 
+export const puffsApi = {
+  createPuff: async () => {
+    const initData = getTelegramAuthData();
+    const response = await apiClient.post(
+      "/v2/puffs",
+      {},
+      {
+        headers: {
+          "telegram-init-data": initData
+        }
+      }
+    );
+    return response.data;
+  }
+};
+
 export const userApi = {
   fetchProfile: async () => {
     const initData = getTelegramAuthData();
