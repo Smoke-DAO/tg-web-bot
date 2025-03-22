@@ -1,9 +1,11 @@
 import * as React from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
+import { observer } from "mobx-react-lite";
 
 import { MenuItem } from "./components/MenuItem";
 import { SvgIcon } from "./components/SvgIcon";
+import { useStores } from "./stores/useStores";
 
 const menuItems = [
   {
@@ -85,9 +87,14 @@ const Navigation = styled.nav`
   z-index: 1;
 `;
 
-const App: React.FC = () => {
+const App: React.FC = observer(() => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { userStore } = useStores();
+
+  React.useEffect(() => {
+    userStore.loadProfile();
+  }, [userStore]);
 
   return (
     <Root>
@@ -106,6 +113,6 @@ const App: React.FC = () => {
       </Navigation>
     </Root>
   );
-};
+});
 
 export default App;

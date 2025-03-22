@@ -16,7 +16,7 @@ const games = [
     imageSrc: "./images/farm.jpg",
     name: "Ganja Farm",
     description: "Buy seeds for $moken, grow and sell Ganja, get $joints",
-    gameLink: "/"
+    gameLink: "https://t.me/smoke_dao_fun_bot/ganja_farm"
   },
   {
     imageSrc: "./images/roller.jpg",
