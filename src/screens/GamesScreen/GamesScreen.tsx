@@ -18,12 +18,12 @@ const games = [
     description: "Buy seeds for $moken, grow and sell Ganja, get $joints",
     gameLink: "https://t.me/smoke_dao_fun_bot/ganja_farm"
   },
-  {
-    imageSrc: "./images/roller.jpg",
-    name: "OG Roller",
-    description: "Spin the Grinder, score the joints and get the $moken.",
-    gameLink: "/"
-  }
+  // {
+  //   imageSrc: "./images/roller.jpg",
+  //   name: "OG Roller",
+  //   description: "Spin the Grinder, score the joints and get the $moken.",
+  //   gameLink: "/"
+  // }
 ];
 
 export const GamesScreen: React.FC = () => {

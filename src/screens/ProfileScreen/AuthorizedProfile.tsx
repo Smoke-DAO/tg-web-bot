@@ -93,9 +93,9 @@ export const AuthorizedProfile: React.FC<AuthorizedProfileProps> = ({
           world.{" "}
         </Body>
       </Column>
-      <Button fullwidth={true} size="large">
+      {/* <Button fullwidth={true} size="large">
         Shops on the Map
-      </Button>
+      </Button> */}
     </Root>
   );
 };

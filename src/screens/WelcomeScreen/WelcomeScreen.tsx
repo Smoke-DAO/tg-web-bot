@@ -53,7 +53,7 @@ export const WelcomeScreen: React.FC = () => {
         ))}
       </Section>
 
-      <Section title="Farm $JOINT">
+      {/* <Section title="Farm $JOINT">
         {mintSpendCards.map((card) => (
           <ActionCard
             title={card.title}
@@ -61,7 +61,7 @@ export const WelcomeScreen: React.FC = () => {
             href={card.href}
           />
         ))}
-      </Section>
+      </Section> */}
     </Root>
   );
 };
