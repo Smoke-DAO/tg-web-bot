@@ -87,57 +87,14 @@ const Navigation = styled.nav`
   z-index: 1;
 `;
 
-const Tooltip = styled.div`
-  position: absolute; /* Changed from fixed to absolute for positioning relative to Root */
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 12px;
-  white-space: nowrap;
-  z-index: 10; /* Ensure tooltip is above other elements */
-  pointer-events: none; /* Prevent tooltip from blocking clicks */
-  transform: translate(-50%, -100%); /* Center horizontally, position above */
-  margin-top: -8px; /* Add some space above the element */
-`;
-
 const App: React.FC = observer(() => {
   const location = useLocation();
   const navigate = useNavigate();
   const { userStore } = useStores();
-  const [tooltip, setTooltip] = React.useState<{ visible: boolean; text: string; top: number; left: number } | null>(null);
-  const tooltipTimeoutRef = React.useRef<number | null>(null);
 
   React.useEffect(() => {
     userStore.loadProfile();
   }, [userStore]);
-
-  // Clear timeout on unmount
-  React.useEffect(() => {
-    return () => {
-      if (tooltipTimeoutRef.current) {
-        clearTimeout(tooltipTimeoutRef.current);
-      }
-    };
-  }, []);
-
-  const showTooltip = (text: string, element: HTMLElement) => {
-    if (tooltipTimeoutRef.current) {
-      clearTimeout(tooltipTimeoutRef.current); // Clear existing timeout if any
-    }
-    const rect = element.getBoundingClientRect();
-    // Calculate position relative to the viewport
-    const top = rect.top; // Use viewport top
-    const left = rect.left + rect.width / 2; // Center horizontally relative to the element viewport position
-
-    setTooltip({ visible: true, text, top, left });
-
-    // Hide tooltip after 2 seconds
-    tooltipTimeoutRef.current = window.setTimeout(() => {
-      setTooltip(null);
-      tooltipTimeoutRef.current = null;
-    }, 2000);
-  };
 
   return (
     <Root>
@@ -150,25 +107,10 @@ const App: React.FC = observer(() => {
             key={index}
             {...item}
             isActive={location.pathname === item.href}
-            onClick={(e) => {
-              if (item.href === "/joint") {
-                // Show tooltip instead of navigating
-                // Need to cast e.currentTarget to HTMLElement
-                showTooltip("Coming soon", e.currentTarget as HTMLElement);
-              } else {
-                // Default navigation behavior
-                navigate(item.href);
-              }
-            }}
+            onClick={() => navigate(item.href)}
           />
         ))}
       </Navigation>
-      {/* Render tooltip conditionally */}
-      {tooltip?.visible && (
-        <Tooltip style={{ top: `${tooltip.top}px`, left: `${tooltip.left}px` }}>
-          {tooltip.text}
-        </Tooltip>
-      )}
     </Root>
   );
 });

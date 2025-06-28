@@ -13,7 +13,7 @@ const farmCards = [
   {
     title: "Proof of Puff",
     backgroundImage: "./images/proof_of_puff.jpg",
-    href: "/proof-of-puff",
+    href: "/puff",
   }
 ]
 
@@ -21,13 +21,13 @@ const mintSpendCards = [
   {
     title: "Mint",
     backgroundImage: "./images/mint.jpg",
-    href: "/mint-joint",
+    href: "/joint",
   },
-  {
-    title: "Spend",
-    backgroundImage: "./images/spend.jpg",
-    href: "/spend-joint",
-  },
+  // {
+  //   title: "Spend",
+  //   backgroundImage: "./images/spend.jpg",
+  //   href: "/spend-joint",
+  // },
 ]
 
 export const WelcomeScreen: React.FC = () => {
@@ -46,22 +46,24 @@ export const WelcomeScreen: React.FC = () => {
       <Section title="Farm $MOKEN">
         {farmCards.map((card) => (
           <ActionCard
-            title={card.title}
+            key={card.href}
             backgroundImage={card.backgroundImage}
             href={card.href}
+            title={card.title}
           />
         ))}
       </Section>
 
-      {/* <Section title="Farm $JOINT">
+      <Section title="Farm $JOINT">
         {mintSpendCards.map((card) => (
           <ActionCard
-            title={card.title}
+            key={card.href}
             backgroundImage={card.backgroundImage}
             href={card.href}
+            title={card.title}
           />
         ))}
-      </Section> */}
+      </Section>
     </Root>
   );
 };

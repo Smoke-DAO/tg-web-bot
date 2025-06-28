@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
 import { Button } from "./Button";
 
 const Card = styled.div<{ backgroundImage?: string }>`
@@ -29,10 +30,11 @@ interface ActionCardProps {
   href?: string;
 }
 
-export const ActionCard: React.FC<ActionCardProps> = ({ title, onClick, backgroundImage }) => {
+export const ActionCard: React.FC<ActionCardProps> = ({ title, onClick, backgroundImage, href }) => {
+  const navigate = useNavigate();
   return (
     <Card backgroundImage={backgroundImage}>
-      <Button size="small" onClick={onClick}>
+      <Button size="small" onClick={href ? () => navigate(href) : onClick}>
         {title}
       </Button>
     </Card>
