@@ -56,8 +56,8 @@ export const userApi = {
 export const jointsApi = {
   mintJoints: async (quantity: number) => {
     const initData = getTelegramAuthData();
-    const response = await apiClient.put(
-      "/v2/joints/mint",
+    const response = await apiClient.post(
+      "/v2/joints",
       { quantity },
       {
         headers: {
