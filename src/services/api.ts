@@ -52,3 +52,20 @@ export const userApi = {
     return response.data;
   }
 };
+
+export const jointsApi = {
+  mintJoints: async (quantity: number) => {
+    const initData = getTelegramAuthData();
+    const response = await apiClient.put(
+      "/v2/joints/mint",
+      { quantity },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "telegram-init-data": initData
+        }
+      }
+    );
+    return response.data;
+  }
+};
